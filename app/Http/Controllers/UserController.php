@@ -5,9 +5,16 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Routing\Controller;
 
 class UserController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('can:level')->only('edit', 'update');
+    }
+
     public function index()
     {
         return view('users.index', [
@@ -24,6 +31,7 @@ class UserController extends Controller
 
     public function update(Request $id)
     {
-        return 'update';
+        User::findOrFail($id->id)->update($id->all());
+        return redirect()->route('user.index');
     }
 }
