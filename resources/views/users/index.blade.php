@@ -37,7 +37,7 @@
                                                 <i class="fa-solid fa-user"></i>
                                             @endif
                                         </td>
-                                        <td class="p-2">{{ $user->name }}</td>
+                                        <td class="p-2 px-4">{{ $user->name }}</td>
                                         <td>{{ $user->email }}</td>
                                         <td>{{ $user->created_at }}</td>
                                         @can('level')
